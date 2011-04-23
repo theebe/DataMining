@@ -37,6 +37,8 @@ public class WekaService implements IWekaService {
      * @return              String z odpowiedzia czy operacja wykonala sie poprawnie
      */
     public String setAlgorithm(int algorithmType, String location, String id, String table, String[] options){
+        wekaAlgorithm.setAlgorithmType(algorithmType);
+        wekaAlgorithm.setOptions(options);
         //TODO: wyciaganie danych z webserwisu dbapi; ustawienie parametrow algorytmu; wyslanie odpowiedzi
         return "OKSet";
     }
@@ -44,11 +46,9 @@ public class WekaService implements IWekaService {
 
     /**
      * Funkcja uruchamia dzialanie Weki
-     * @return Odpowiedz czy algorytm zostal wykonany poprawnie
      */
-    public String runAlgorithm(){
-        //TODO: uruchomienie algorytmu, sprawdzenie czy wszystko OK
-        return "OKRun";
+    public void runAlgorithm(){ 
+       wekaAlgorithm.run();
     }
 
 

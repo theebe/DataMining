@@ -27,9 +27,8 @@ public interface IWekaService {
 
     /**
      * Funkcja uruchamia dzialanie Weki
-     * @return Odpowiedz czy algorytm zostal wykonany poprawnie
      */
-    public String runAlgorithm();
+    public void runAlgorithm();
 
     /**
      * Funkcja pobierajaca obiekt z danymi przetworzonymi przez Weke
