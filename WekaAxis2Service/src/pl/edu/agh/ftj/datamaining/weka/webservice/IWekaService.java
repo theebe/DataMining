@@ -26,13 +26,10 @@ public interface IWekaService {
     public String setAlgorithm(int algorithmType, String location, String id, String table, String[] options);
 
     /**
-     * Funkcja uruchamia dzialanie Weki
+     * Funkcja uruchamia dzialanie algorytmu
+     * @return Zwraca przetworzone dane z Weki
      */
-    public void runAlgorithm();
+    public WekaAnswer runAlgorithm();
 
-    /**
-     * Funkcja pobierajaca obiekt z danymi przetworzonymi przez Weke
-     * @return obiekt z danymi z Weki
-     */
-    public WekaAnswer getData();
+
 }

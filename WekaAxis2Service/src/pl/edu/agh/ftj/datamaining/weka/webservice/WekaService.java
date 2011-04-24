@@ -8,6 +8,8 @@ import pl.edu.agh.ftj.datamaining.weka.algorithm.WekaAnswer;
  * Klasa implementująca inferfejs Webservisu dla Weki
  * Służy jako "most" łączący Webservisy z biblioteką Weka.
  * Webservis stworzony dla Axis2
+ * adres: http://localhost:8080/axis2/services/WekaService/{nazwaMetody}?{parametr1=aaa&parametr2=bbb}
+ * wsdl: http://localhost:8080/axis2/services/WekaService?wsdl
  * @author Szymon Skupien
  */
 public class WekaService implements IWekaService {
@@ -46,18 +48,13 @@ public class WekaService implements IWekaService {
 
     /**
      * Funkcja uruchamia dzialanie Weki
+     * @return Zwraca przetworzone dane z Weki
      */
-    public void runAlgorithm(){ 
+    public WekaAnswer runAlgorithm(){
        wekaAlgorithm.run();
+       return wekaAlgorithm.getData();
     }
 
 
-    /**
-     * Funkcja pobierajaca obiekt z danymi przetworzonymi przez Weke
-     * @return obiekt z danymi z Weki
-     */
-    public WekaAnswer getData(){
-        return wekaAlgorithm.getData();
-    }
 
 }
