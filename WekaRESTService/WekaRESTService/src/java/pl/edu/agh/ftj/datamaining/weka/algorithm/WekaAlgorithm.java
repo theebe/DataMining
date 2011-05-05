@@ -1,5 +1,6 @@
 package pl.edu.agh.ftj.datamaining.weka.algorithm;
 
+import javax.ejb.Singleton;
 import weka.clusterers.Cobweb;
 import weka.clusterers.EM;
 import weka.clusterers.HierarchicalClusterer;
@@ -10,7 +11,9 @@ import weka.core.Instances;
  * Klasa odpowiedzialna za komunikacje z biblioteka Weki
  * @author Bartek
  */
+
 public class WekaAlgorithm {
+
     /**
      * Obiekt przechowujący dane do analizy.
      */
@@ -34,7 +37,7 @@ public class WekaAlgorithm {
     /**
      * Tablica z nazwami udostępnianych algorytmów
      */
-    private String[] algorithms = {
+    private static String[] algorithms = {
         "SimpleKMeans",
         "EM",
         "HierarchicalClusterer",
@@ -95,7 +98,7 @@ public class WekaAlgorithm {
      * Metoda zwracająca dostępne nazwy algorytmów.
      * @return Tablica z nazwami algorytmów.
      */
-    public String[] getAlgorithms() {
+    public static String[] getAlgorithms() {
         return algorithms;
     }
 

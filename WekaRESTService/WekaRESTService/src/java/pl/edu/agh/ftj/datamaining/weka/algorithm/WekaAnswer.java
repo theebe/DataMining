@@ -1,5 +1,7 @@
 package pl.edu.agh.ftj.datamaining.weka.algorithm;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.*;
 import weka.core.Capabilities;
 import weka.core.DistanceFunction;
@@ -16,6 +18,7 @@ public class WekaAnswer {
     /**
      * Typ algorytmu jaki ma zostac uzyty. Dostepne opcje: 1 - SimpleKMeans, 2 - EM, 3 - HierarchicalClusterer, 4 - Cobweb.
      */
+
     private int algorithmType;
 
     /**
@@ -386,7 +389,7 @@ public class WekaAnswer {
      */
     @Override
     public String toString() {
-        return "Algorithm: " + algorithmType + "; Name: " + algorithmName;
+        return "Algorithm: " + algorithmType + "; Name: " + getAlgorithmName();
     }
 
     /**
@@ -395,5 +398,12 @@ public class WekaAnswer {
      */
     public void setAlgorithmName(String algorithmName) {
         this.algorithmName = algorithmName;
+    }
+
+    /**
+     * @return the algorithmName
+     */
+    public String getAlgorithmName() {
+        return algorithmName;
     }
 }
