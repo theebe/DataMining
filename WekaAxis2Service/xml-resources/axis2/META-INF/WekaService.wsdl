@@ -1,39 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:axis2="http://webservice/weka/datamaining/ftj/agh/edu/pl/" xmlns:ns1="http://webservice/weka/datamaining/ftj/agh/edu/pl/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ns0="http://algorithm.weka.datamaining.ftj.agh.edu.pl/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://webservice/weka/datamaining/ftj/agh/edu/pl/">
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:axis2="http://webservice/weka/datamining/ftj/agh/edu/pl/" xmlns:ns2="http://webservice/weka/datamining/ftj/agh/edu/pl/xsd" xmlns:ns1="http://core.weka/xsd" xmlns:ns3="http://algorithm.weka.datamining.ftj.agh.edu.pl/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ns0="http://util.java/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://webservice/weka/datamining/ftj/agh/edu/pl/">
     <wsdl:types>
-        <xs:schema xmlns:ax21="http://algorithm.weka.datamaining.ftj.agh.edu.pl/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://algorithm.weka.datamaining.ftj.agh.edu.pl/xsd">
-            <xs:complexType name="WekaAnswer">
+        <xs:schema xmlns:ax24="http://util.java/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://util.java/xsd">
+            <xs:complexType name="Properties">
+                <xs:complexContent>
+                    <xs:extension base="xs:Hashtable">
+                        <xs:sequence/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax22="http://core.weka/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://core.weka/xsd">
+            <xs:complexType name="Capabilities">
                 <xs:sequence>
-                    <xs:element minOccurs="0" name="answer" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="attributeCapabilities" nillable="true" type="ax22:Capabilities"/>
+                    <xs:element minOccurs="0" name="classCapabilities" nillable="true" type="ax22:Capabilities"/>
+                    <xs:element minOccurs="0" name="failReason" nillable="true"/>
+                    <xs:element minOccurs="0" name="minimumNumberInstances" type="xs:int"/>
+                    <xs:element minOccurs="0" name="otherCapabilities" nillable="true" type="ax22:Capabilities"/>
+                    <xs:element minOccurs="0" name="owner" nillable="true" type="ax22:CapabilitiesHandler"/>
+                    <xs:element minOccurs="0" name="revision" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="PROPERTIES_FILE" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CapabilitiesHandler">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="capabilities" nillable="true" type="ax22:Capabilities"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Instances">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="class" nillable="true" type="ax22:Attribute"/>
+                    <xs:element minOccurs="0" name="classIndex" type="xs:int"/>
+                    <xs:element minOccurs="0" name="relationName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="revision" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ARFF_DATA" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ARFF_RELATION" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="FILE_EXTENSION" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="SERIALIZED_OBJ_FILE_EXTENSION" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Attribute">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="averagable" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="date" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="dateFormat" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="index" type="xs:int"/>
+                    <xs:element minOccurs="0" name="lowerNumericBound" type="xs:double"/>
+                    <xs:element minOccurs="0" name="metadata" nillable="true" type="ax22:ProtectedProperties"/>
+                    <xs:element minOccurs="0" name="nominal" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="numeric" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="numericRange" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="regular" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="relationValued" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="revision" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="string" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="upperNumericBound" type="xs:double"/>
+                    <xs:element minOccurs="0" name="weight" type="xs:double"/>
+                    <xs:element minOccurs="0" name="DATE" type="xs:int"/>
+                    <xs:element minOccurs="0" name="NOMINAL" type="xs:int"/>
+                    <xs:element minOccurs="0" name="NUMERIC" type="xs:int"/>
+                    <xs:element minOccurs="0" name="ORDERING_MODULO" type="xs:int"/>
+                    <xs:element minOccurs="0" name="ORDERING_ORDERED" type="xs:int"/>
+                    <xs:element minOccurs="0" name="ORDERING_SYMBOLIC" type="xs:int"/>
+                    <xs:element minOccurs="0" name="RELATIONAL" type="xs:int"/>
+                    <xs:element minOccurs="0" name="STRING" type="xs:int"/>
+                    <xs:element minOccurs="0" name="ARFF_ATTRIBUTE" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ARFF_ATTRIBUTE_DATE" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ARFF_ATTRIBUTE_INTEGER" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ARFF_ATTRIBUTE_NUMERIC" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ARFF_ATTRIBUTE_REAL" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ARFF_ATTRIBUTE_RELATIONAL" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ARFF_ATTRIBUTE_STRING" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ARFF_END_SUBRELATION" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ProtectedProperties">
+                <xs:complexContent>
+                    <xs:extension base="ns0:Properties">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="revision" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="DistanceFunction">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="attributeIndices" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="instances" nillable="true" type="ax22:Instances"/>
+                    <xs:element minOccurs="0" name="invertSelection" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SelectedTag">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="revision" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="selectedTag" nillable="true" type="ax22:Tag"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="tags" nillable="true" type="ax22:Tag"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Tag">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="iD" type="xs:int"/>
+                    <xs:element minOccurs="0" name="iDStr" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="readable" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="revision" nillable="true" type="xs:string"/>
                 </xs:sequence>
             </xs:complexType>
         </xs:schema>
-        <xs:schema xmlns:ns="http://webservice/weka/datamaining/ftj/agh/edu/pl/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://webservice/weka/datamaining/ftj/agh/edu/pl/xsd">
-            <xs:element name="runAlgorithmResponse">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="setAlgorithm">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" name="algorithmType" type="xs:int"/>
-                        <xs:element minOccurs="0" name="location" nillable="true" type="xs:string"/>
-                        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
-                        <xs:element minOccurs="0" name="table" nillable="true" type="xs:string"/>
-                        <xs:element maxOccurs="unbounded" minOccurs="0" name="options" nillable="true" type="xs:string"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="setAlgorithmResponse">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
+        <xs:schema xmlns:ns="http://webservice/weka/datamining/ftj/agh/edu/pl/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://webservice/weka/datamining/ftj/agh/edu/pl/xsd">
             <xs:element name="getAlgorithmsResponse">
                 <xs:complexType>
                     <xs:sequence>
@@ -41,45 +115,71 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="getDataResponse">
+            <xs:element name="runAlgorithm">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element minOccurs="0" name="return" nillable="true" type="ns0:WekaAnswer"/>
+                        <xs:element minOccurs="0" name="algorithmType" type="xs:int"/>
+                        <xs:element minOccurs="0" name="location" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="table" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="options" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="runAlgorithmResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ns3:WekaAnswer"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
         </xs:schema>
+        <xs:schema xmlns:ax23="http://core.weka/xsd" xmlns:ax21="http://algorithm.weka.datamining.ftj.agh.edu.pl/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://algorithm.weka.datamining.ftj.agh.edu.pl/xsd">
+            <xs:import namespace="http://core.weka/xsd"/>
+            <xs:complexType name="WekaAnswer">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="acuity" type="xs:double"/>
+                    <xs:element minOccurs="0" name="algorithmName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="algorithmType" type="xs:int"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="assignments" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="capabilities" nillable="true" type="ax23:Capabilities"/>
+                    <xs:element minOccurs="0" name="clusterCentroids" nillable="true" type="ax23:Instances"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="clusterModelsNumericAtts" nillable="true" type="xs:double"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="clusterNominalCounts" nillable="true" type="xs:int"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="clusterPriors" nillable="true" type="xs:double"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="clusterSizes" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="clusterStandardDevs" nillable="true" type="ax23:Instances"/>
+                    <xs:element minOccurs="0" name="cutoff" type="xs:double"/>
+                    <xs:element minOccurs="0" name="distanceFunction" nillable="true" type="ax23:DistanceFunction"/>
+                    <xs:element minOccurs="0" name="graph" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="graphType" type="xs:int"/>
+                    <xs:element minOccurs="0" name="linkType" nillable="true" type="ax23:SelectedTag"/>
+                    <xs:element minOccurs="0" name="maxIterations" type="xs:int"/>
+                    <xs:element minOccurs="0" name="minStdDev" type="xs:double"/>
+                    <xs:element minOccurs="0" name="numClusters" type="xs:int"/>
+                    <xs:element minOccurs="0" name="numberOfClusters" type="xs:int"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="options" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="printNewick" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="revision" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="squaredError" type="xs:double"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
     </wsdl:types>
-    <wsdl:message name="getDataRequest"/>
-    <wsdl:message name="getDataResponse">
-        <wsdl:part name="parameters" element="ns1:getDataResponse"/>
-    </wsdl:message>
     <wsdl:message name="getAlgorithmsRequest"/>
     <wsdl:message name="getAlgorithmsResponse">
-        <wsdl:part name="parameters" element="ns1:getAlgorithmsResponse"/>
+        <wsdl:part name="parameters" element="ns2:getAlgorithmsResponse"/>
     </wsdl:message>
-    <wsdl:message name="setAlgorithmRequest">
-        <wsdl:part name="parameters" element="ns1:setAlgorithm"/>
+    <wsdl:message name="runAlgorithmRequest">
+        <wsdl:part name="parameters" element="ns2:runAlgorithm"/>
     </wsdl:message>
-    <wsdl:message name="setAlgorithmResponse">
-        <wsdl:part name="parameters" element="ns1:setAlgorithmResponse"/>
-    </wsdl:message>
-    <wsdl:message name="runAlgorithmRequest"/>
     <wsdl:message name="runAlgorithmResponse">
-        <wsdl:part name="parameters" element="ns1:runAlgorithmResponse"/>
+        <wsdl:part name="parameters" element="ns2:runAlgorithmResponse"/>
     </wsdl:message>
     <wsdl:portType name="WekaServicePortType">
-        <wsdl:operation name="getData">
-            <wsdl:input message="axis2:getDataRequest" wsaw:Action="urn:getData"/>
-            <wsdl:output message="axis2:getDataResponse" wsaw:Action="urn:getDataResponse"/>
-        </wsdl:operation>
         <wsdl:operation name="getAlgorithms">
             <wsdl:input message="axis2:getAlgorithmsRequest" wsaw:Action="urn:getAlgorithms"/>
             <wsdl:output message="axis2:getAlgorithmsResponse" wsaw:Action="urn:getAlgorithmsResponse"/>
-        </wsdl:operation>
-        <wsdl:operation name="setAlgorithm">
-            <wsdl:input message="axis2:setAlgorithmRequest" wsaw:Action="urn:setAlgorithm"/>
-            <wsdl:output message="axis2:setAlgorithmResponse" wsaw:Action="urn:setAlgorithmResponse"/>
         </wsdl:operation>
         <wsdl:operation name="runAlgorithm">
             <wsdl:input message="axis2:runAlgorithmRequest" wsaw:Action="urn:runAlgorithm"/>
@@ -88,26 +188,8 @@
     </wsdl:portType>
     <wsdl:binding name="WekaServiceSOAP11Binding" type="axis2:WekaServicePortType">
         <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-        <wsdl:operation name="getData">
-            <soap:operation soapAction="urn:getData" style="document"/>
-            <wsdl:input>
-                <soap:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <soap:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
         <wsdl:operation name="getAlgorithms">
             <soap:operation soapAction="urn:getAlgorithms" style="document"/>
-            <wsdl:input>
-                <soap:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <soap:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="setAlgorithm">
-            <soap:operation soapAction="urn:setAlgorithm" style="document"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -127,26 +209,8 @@
     </wsdl:binding>
     <wsdl:binding name="WekaServiceSOAP12Binding" type="axis2:WekaServicePortType">
         <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-        <wsdl:operation name="getData">
-            <soap12:operation soapAction="urn:getData" style="document"/>
-            <wsdl:input>
-                <soap12:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <soap12:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
         <wsdl:operation name="getAlgorithms">
             <soap12:operation soapAction="urn:getAlgorithms" style="document"/>
-            <wsdl:input>
-                <soap12:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <soap12:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="setAlgorithm">
-            <soap12:operation soapAction="urn:setAlgorithm" style="document"/>
             <wsdl:input>
                 <soap12:body use="literal"/>
             </wsdl:input>
@@ -166,15 +230,6 @@
     </wsdl:binding>
     <wsdl:binding name="WekaServiceHttpBinding" type="axis2:WekaServicePortType">
         <http:binding verb="POST"/>
-        <wsdl:operation name="getData">
-            <http:operation location="WekaService/getData"/>
-            <wsdl:input>
-                <mime:content type="text/xml" part="getData"/>
-            </wsdl:input>
-            <wsdl:output>
-                <mime:content type="text/xml" part="getData"/>
-            </wsdl:output>
-        </wsdl:operation>
         <wsdl:operation name="getAlgorithms">
             <http:operation location="WekaService/getAlgorithms"/>
             <wsdl:input>
@@ -182,15 +237,6 @@
             </wsdl:input>
             <wsdl:output>
                 <mime:content type="text/xml" part="getAlgorithms"/>
-            </wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="setAlgorithm">
-            <http:operation location="WekaService/setAlgorithm"/>
-            <wsdl:input>
-                <mime:content type="text/xml" part="setAlgorithm"/>
-            </wsdl:input>
-            <wsdl:output>
-                <mime:content type="text/xml" part="setAlgorithm"/>
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="runAlgorithm">

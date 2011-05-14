@@ -17,7 +17,7 @@
         </condition>
     </target>
     <target name="java2wsdl-WekaService" depends="java2wsdl-check-WekaService, compile" unless="java2wsdl-check-WekaService.notRequired">
-        <java2wsdl className="pl.edu.agh.ftj.datamaining.weka.webservice.WekaService" serviceName="WekaService" outputLocation="${basedir}/xml-resources/axis2/META-INF" outputFileName="WekaService.wsdl" targetNamespace="http://webservice/weka/datamaining/ftj/agh/edu/pl/" schemaTargetNamespace="http://webservice/weka/datamaining/ftj/agh/edu/pl/xsd">
+        <java2wsdl className="pl.edu.agh.ftj.datamining.weka.webservice.WekaService" serviceName="WekaService" outputLocation="${basedir}/xml-resources/axis2/META-INF" outputFileName="WekaService.wsdl" targetNamespace="http://webservice/weka/datamining/ftj/agh/edu/pl/" schemaTargetNamespace="http://webservice/weka/datamining/ftj/agh/edu/pl/xsd">
             <classpath>
                 <pathelement location="${build.dir}/classes"/>
                 <pathelement location="${javac.classpath}"/>
@@ -29,12 +29,6 @@
     </target>
     <target name="axis2-aar" depends="compile, java2wsdl-WekaService">
         <mkdir dir="${build.dir}/axis2/WEB-INF/services"/>
-        <mkdir dir="${basedir}/xml-resources/axis2/lib"/>
-        <copy todir="${basedir}/xml-resources/axis2/lib" flatten="true" overwrite="false">
-            <resources>
-                <file file="${file.reference.weka.jar}"/>
-            </resources>
-        </copy>
         <jar destfile="${build.dir}/axis2/WEB-INF/services/${ant.project.name}.aar">
             <fileset excludes="**/Test.class" dir="${build.dir}/classes"/>
             <fileset dir="${basedir}/xml-resources/axis2">
@@ -44,7 +38,6 @@
                 <include name="**/*.jar"/>
             </fileset>
         </jar>
-        <delete dir="${basedir}/xml-resources/axis2/lib"/>
     </target>
     <target name="axis2-deploy-dir-check" depends="axis2-aar">
         <condition property="axis2-deploy-dir-required">
