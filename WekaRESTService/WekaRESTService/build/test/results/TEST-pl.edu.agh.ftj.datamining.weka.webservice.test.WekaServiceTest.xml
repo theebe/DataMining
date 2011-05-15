@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="bats" name="pl.edu.agh.ftj.datamining.weka.webservice.test.WekaServiceTest" tests="2" time="2.404" timestamp="2011-05-15T13:43:39">
+<testsuite errors="0" failures="0" hostname="bats" name="pl.edu.agh.ftj.datamining.weka.webservice.test.WekaServiceTest" tests="2" time="1.009" timestamp="2011-05-15T14:19:45">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="PL" />
@@ -379,18 +379,49 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="war.ear.name" value="WekaRESTService.war" />
   </properties>
-  <testcase classname="pl.edu.agh.ftj.datamining.weka.webservice.test.WekaServiceTest" name="testGetAlgorithms" time="0.71" />
-  <testcase classname="pl.edu.agh.ftj.datamining.weka.webservice.test.WekaServiceTest" name="testRunAlgorithm" time="1.574" />
+  <testcase classname="pl.edu.agh.ftj.datamining.weka.webservice.test.WekaServiceTest" name="testGetAlgorithms" time="0.525" />
+  <testcase classname="pl.edu.agh.ftj.datamining.weka.webservice.test.WekaServiceTest" name="testRunAlgorithm" time="0.411" />
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[2011-05-15 15:43:39 com.sun.jersey.api.client.Client <init>
+  <system-err><![CDATA[2011-05-15 16:19:46 com.sun.jersey.api.client.Client <init>
 INFO: Adding the following classes declared in META-INF/services/jersey-client-components to the client configuration:
   class com.sun.jersey.multipart.impl.MultiPartConfigProvider
   class com.sun.jersey.multipart.impl.MultiPartReader
   class com.sun.jersey.multipart.impl.MultiPartWriter
-2011-05-15 15:43:39 com.sun.jersey.api.client.Client <init>
+2011-05-15 16:19:46 com.sun.jersey.api.client.Client <init>
 INFO: Adding the following classes declared in META-INF/services/jersey-client-components to the client configuration:
   class com.sun.jersey.multipart.impl.MultiPartConfigProvider
   class com.sun.jersey.multipart.impl.MultiPartReader
   class com.sun.jersey.multipart.impl.MultiPartWriter
+2011-05-15 16:19:46 pl.edu.agh.ftj.datamining.weka.webservice.test.WekaRESTServiceClient runAlgorithm
+SEVERE: blad w strumieniu bajtow
+java.io.EOFException
+	at java.io.ObjectInputStream$PeekInputStream.readFully(ObjectInputStream.java:2280)
+	at java.io.ObjectInputStream$BlockDataInputStream.readShort(ObjectInputStream.java:2749)
+	at java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:779)
+	at java.io.ObjectInputStream.<init>(ObjectInputStream.java:279)
+	at pl.edu.agh.ftj.datamining.weka.webservice.test.WekaRESTServiceClient.runAlgorithm(WekaRESTServiceClient.java:88)
+	at pl.edu.agh.ftj.datamining.weka.webservice.test.WekaServiceTest.testRunAlgorithm(WekaServiceTest.java:63)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:73)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:46)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:180)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:41)
+	at org.junit.runners.ParentRunner$1.evaluate(ParentRunner.java:173)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:220)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:518)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1052)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:906)
 ]]></system-err>
 </testsuite>
