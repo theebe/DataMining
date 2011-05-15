@@ -15,6 +15,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
 import pl.edu.agh.ftj.datamining.weka.algorithm.WekaAlgorithm;
 import pl.edu.agh.ftj.datamining.weka.algorithm.WekaAnswer;
@@ -30,7 +32,7 @@ import weka.core.converters.ConverterUtils.DataSource;
  * @author Szymon Skupien
  */
 @Path("/")
-public class WekaService /*implements IWekaService*/ {
+public class WekaService implements IWekaService {
 
     private static final Logger log = Logger.getLogger("WekaRESTServiceLog");
 
@@ -70,13 +72,14 @@ public class WekaService /*implements IWekaService*/ {
      * @param id            id do danych (do webservisu dbapi)
      * @param table         table do danych (do webservisu dbapi)
      * @param options       opcje algorytmu
-     * @return Zwraca przetworzone dane z Weki
+     * @return Zwraca przetworzone dane z Weki w postaci zserializowanego obiektu WekaAnswer zserializowanej (ciąg bajtów)
      */
     @GET
-    @Produces("text/plain")
+    @Produces("application/octet-stream")
     @Path("/runAlgorithm")
-    public StreamingOutput runAlgorithm(@QueryParam("algorithmType") Integer algorithmType, @QueryParam("location") String location, @QueryParam("id") String id, @QueryParam("table") String table, @QueryParam("options") String options) {
+    public Response runAlgorithm(@QueryParam("algorithmType") Integer algorithmType, @QueryParam("location") String location, @QueryParam("id") String id, @QueryParam("table") String table, @QueryParam("options") String options) {
 
+    //TODO: odczyt obiektu Instances z WebServisu DBApi
 
         DataSource source = null;
         Instances data = null;
@@ -100,6 +103,8 @@ public class WekaService /*implements IWekaService*/ {
             e.printStackTrace();
         }
 
+
+        //TODO odczyt opcji ze stringu
         String[] opt = new String[1];
         opt[0] = "-O";
         WekaAlgorithm alg = new WekaAlgorithm();
@@ -110,24 +115,21 @@ public class WekaService /*implements IWekaService*/ {
         alg.run();
         final WekaAnswer wekaAnswer = alg.getData();
 
-        return new StreamingOutput() {
 
-            public void write(OutputStream output) throws IOException,
-                    WebApplicationException {
-                ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                byte[] bytes = null;
-                try {
-                    ObjectOutput out = new ObjectOutputStream(bos);
-                    out.writeObject(wekaAnswer);
-                    bytes = bos.toByteArray();
-                } catch (Exception e) {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        byte[] bytes = null;
+        try {
+            ObjectOutput out = new ObjectOutputStream(bos);
+            out.writeObject(wekaAnswer);
+            bytes = bos.toByteArray();
+        } catch (Exception e) {
 
-                    log.log(Level.ALL, "runAlgorithm error:");
-                    log.log(Level.ALL, e.getMessage());
-                }
-                output.write(bytes);
-            }
-        };
+            log.log(Level.ALL, "runAlgorithm error:");
+            log.log(Level.ALL, e.getMessage());
+        }
+
+        return Response.ok(bytes, MediaType.APPLICATION_OCTET_STREAM).build();
+
     }
 
 

@@ -1,9 +1,13 @@
 package pl.edu.agh.ftj.datamining.weka.webservice.test;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import javax.ws.rs.core.Response;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -54,34 +58,31 @@ public class WekaServiceTest {
      * Test of runAlgorithm method, of class WekaService.
      */
     @Test
-    public void testRunAlgorithm() {
+    public void testRunAlgorithm() throws IOException, ClassNotFoundException {
 
-        // WekaAnswer response = client.runAlgorithm(WekaAnswer.class, 1, "location", "id", "table", "opt");
-        // WekaService expService = new WekaService();
-        // WekaAnswer expResult = expService.runAlgorithm(1, "location", "id", "table", "opt");
-        //    assertEquals(expResult.getAlgorithmName(), response.getAlgorithmName());
         WekaAnswer response = client.runAlgorithm(1, "location", "ïd", "table", "opt");
-        WekaService expService = new WekaService();
-      /*  byte[] byteResult = expService.runAlgorithm(1, "location", "id", "table", "opt");
-        ByteArrayInputStream bis = new ByteArrayInputStream(byteResult);
-        WekaAnswer expResult = null;
+        Response expResp = new WekaService().runAlgorithm(1, "location", "id", "table", "opt");
+        byte[] expRespByte = (byte[]) expResp.getEntity();
+        WekaAnswer expResponse = new WekaAnswer();
         try {
+            ByteArrayInputStream bis = new ByteArrayInputStream(expRespByte);
             ObjectInput in = new ObjectInputStream(bis);
-            expResult = (WekaAnswer) in.readObject();
+            expResponse = (WekaAnswer) in.readObject();
         } catch (IOException e) {
-            //blad w ciagu bajtow
+           // Logger.getLogger(WekaRESTServiceClient.class.getName()).log(Level.SEVERE, "blad w strumieniu bajtow", e);
         } catch (ClassNotFoundException ex) {
-            //blad w serializacji
+           // Logger.getLogger(WekaRESTServiceClient.class.getName()).log(Level.SEVERE, "blad w serializacji", ex);
+        } catch (NullPointerException exx) {
+   
+         //   Logger.getLogger(WekaRESTServiceClient.class.getName()).log(Level.SEVERE, "ERROR NULL POINTER EXEPTION", exx);
         }
-        if(response==null){
-             System.out.println("#####################################");
-        System.out.println(response.getAlgorithmName());
-       
-        }
-         assertEquals(expResult.getAlgorithmName(), response.getAlgorithmName());
-       *
-       */
-        assertTrue(false); //TODO
+
+     
+
+        assertEquals(response.getAlgorithmName(), expResponse.getAlgorithmName());
+        assertEquals(response.getAlgorithmType(), expResponse.getAlgorithmType());
+        assertEquals(response.getRevision(), expResponse.getRevision());
+
     }
 
     /**

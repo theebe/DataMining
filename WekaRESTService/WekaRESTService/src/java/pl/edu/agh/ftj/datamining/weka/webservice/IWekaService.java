@@ -1,5 +1,6 @@
 package pl.edu.agh.ftj.datamining.weka.webservice;
 
+import javax.ws.rs.core.Response;
 import pl.edu.agh.ftj.datamining.weka.algorithm.WekaAnswer;
 
 /**
@@ -21,8 +22,8 @@ public interface IWekaService {
      * @param id            id do danych (do webservisu dbapi)
      * @param table         table do danych (do webservisu dbapi)
      * @param options       opcje algorytmu podawane w ciągu
-     * @return Zwraca WekaAnswer przetworzone dane z Weki
+     * @return Zwraca WekaAnswer przetworzone dane z Weki w postaci ciągu bajtów (zserializowany obiekt WekaAnswer)
      */
-    public WekaAnswer runAlgorithm(Integer algorithmType, String location, String id, String table, String options);;
+    public Response runAlgorithm(Integer algorithmType, String location, String id, String table, String options);;
 
 }
